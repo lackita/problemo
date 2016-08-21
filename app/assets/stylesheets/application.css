@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+#problem_description {
+  width: 100%;
+}

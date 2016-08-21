@@ -1,5 +1,0 @@
-<ul>
-	<% @problems.each do |problem| %>
-		<li><%= problem.description %> <%= button_to "Solve", solve_problem_path(problem) %></li>
-	<% end %>
-</ul>

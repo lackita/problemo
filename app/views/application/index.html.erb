@@ -1,3 +1,18 @@
-<%= render partial: 'problems/form', locals: {problem: @new_problem} %>
+<%= form_for @new_problem do |f| %>
+  <%= f.text_field :description, placeholder: "Describe your problem" %> <br />
+  <%= f.submit "Save" %>
+<% end %>
+
 <hr />
-<%= render template: 'problems/index' %>
+
+<ul class="list-group">
+  <% @problems.each do |problem| %>
+    <li class="list-group-item">
+      <%= link_to "Solve", solve_problem_path(problem),
+      class: "btn btn-primary btn-xs",
+        role: "button",
+        method: "post" %>
+      <%= problem.description %>
+    </li>
+  <% end %>
+</ul>
