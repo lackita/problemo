@@ -1,7 +1,8 @@
 class ProblemsController < ApplicationController
   def create
     if params[:problem][:description]
-      problem = Problem.new(params.require(:problem).permit(:description))
+      user = User.find(params[:problem][:user_id])
+      problem = user.problems.new(params.require(:problem).permit(:description))
       problem.save!
     end
     redirect_to '/'

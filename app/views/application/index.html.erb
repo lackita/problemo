@@ -1,18 +1,23 @@
-<%= form_for @new_problem do |f| %>
-  <%= f.text_field :description, placeholder: "Describe your problem" %> <br />
-  <%= f.submit "Save" %>
+<% if @user %>
+	<%= form_for @new_problem do |f| %>
+		<%= f.text_field :description, placeholder: "Describe your problem" %> <br />
+		<%= f.hidden_field :user_id, value: @new_problem.user.id %>
+		<%= f.submit "Save" %>
+	<% end %>
+
+	<hr />
+
+	<ul class="list-group">
+		<% @user.unsolved_problems.each do |problem| %>
+			<li class="list-group-item">
+				<%= link_to "Solve", solve_problem_path(problem),
+				class: "btn btn-primary btn-xs",
+					role: "button",
+					method: "post" %>
+				<%= problem.description %>
+			</li>
+		<% end %>
+	</ul>
+<% else %>
+	<p>You must sign in first</p>
 <% end %>
-
-<hr />
-
-<ul class="list-group">
-  <% @problems.each do |problem| %>
-    <li class="list-group-item">
-      <%= link_to "Solve", solve_problem_path(problem),
-      class: "btn btn-primary btn-xs",
-        role: "button",
-        method: "post" %>
-      <%= problem.description %>
-    </li>
-  <% end %>
-</ul>
