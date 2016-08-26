@@ -6,7 +6,12 @@ class UsersController < ApplicationController
       user = User.create! google_uid: uid
     end
 
-    session[:user] = user
+    session[:user_id] = user.id
+    redirect_to "/"
+  end
+
+  def sign_out
+    reset_session
     redirect_to "/"
   end
 end

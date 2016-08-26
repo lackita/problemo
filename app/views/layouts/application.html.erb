@@ -26,7 +26,13 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/auth/google_oauth2">Google Sign-In</a></li>
+				<li>
+					<% if @user %>
+						<a href="<%= sign_out_user_path @user %>">Sign Out</a>
+					<% else %>
+						<a href="/auth/google_oauth2">Google Sign-In</a>
+					<% end %>
+				</li>
 			</ul>
         </div>
       </div>

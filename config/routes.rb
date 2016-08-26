@@ -8,4 +8,10 @@ Rails.application.routes.draw do
       post 'solve'
     end
   end
+
+  resources :users, only: ["sign_out"] do
+    member do
+      get 'sign_out'
+    end
+  end
 end
