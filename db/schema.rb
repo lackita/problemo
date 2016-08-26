@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826022615) do
+ActiveRecord::Schema.define(version: 20160826031145) do
 
   create_table "problems", force: :cascade do |t|
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "description"
     t.boolean  "solved"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer  "google_uid", limit: 16
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "google_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
