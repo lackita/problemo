@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   def auth
-    raise Exception.new(request.env['omniauth.auth'][:uid])
+    uid = request.env['omniauth.auth'][:uid]
+    user = User.find_by_google_uid(uid)
+    if not user
+      user = User.create! google_uid: uid
+    end
+
+    session[:user] = user
     redirect_to "/"
   end
 end
