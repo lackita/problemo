@@ -28,6 +28,11 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Required for authentication
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
