@@ -11,7 +11,7 @@
 		<% @user.unsolved_problems.each do |problem| %>
 			<li class="list-group-item">
 				<%= link_to "Solve", solve_problem_path(problem),
-				class: "btn btn-primary btn-xs",
+					class: "btn btn-primary btn-xs",
 					role: "button",
 					method: "post" %>
 				<%= problem.description %>
