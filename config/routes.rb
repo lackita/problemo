@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :hypotheses, only: ["create"]
+
   resources :users, only: ["sign_out"] do
     member do
       get 'sign_out'

@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826040235) do
+ActiveRecord::Schema.define(version: 20160827003743) do
+
+  create_table "hypotheses", force: :cascade do |t|
+    t.integer  "problem_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "problems", force: :cascade do |t|
     t.datetime "created_at",  null: false

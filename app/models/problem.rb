@@ -1,9 +1,6 @@
 class Problem < ApplicationRecord
   belongs_to :user
-
-  def self.unsolved
-    where solved: false
-  end
+  has_many :hypotheses
 
   before_save :default_unsolved
   def default_unsolved

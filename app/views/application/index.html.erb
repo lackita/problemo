@@ -14,8 +14,25 @@
 					class: "btn btn-primary btn-xs",
 					role: "button",
 					method: "post" %>
+				<button class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#problem-<%= problem.id %>">
+					Hypotheses
+				</button>
 				<%= problem.description %>
 			</li>
+			<div id="problem-<%= problem.id %>" class="collapse">
+				<% problem.hypotheses.each do |hypothesis| %>
+					<li class="list-group-item list-group-item-info">
+						<%= hypothesis.description %>
+					</li>
+				<% end %>
+				<li class="list-group-item list-group-item-info">
+					<%= form_for @new_hypothesis do |f| %>
+						<%= f.text_field :description, placeholder: "What's your hypothesis?" %>
+						<%= f.hidden_field :problem_id, value: problem.id %>
+						<%= f.submit "Save" %>
+					<% end %>
+				</li>
+			</div>
 		<% end %>
 	</ul>
 <% else %>
