@@ -14,10 +14,6 @@
  *= require_self
  */
 
-#problem_description {
+.description {
   width: 100%;
-}
-
-.g-signin2 {
-  margin-top: 6px;
 }
