@@ -1,48 +1,14 @@
 <% if @user %>
-	<%= form_for @new_problem do |f| %>
-		<%= f.text_field :description, placeholder: "Describe your problem", autofocus: true, class: "description" %> <br />
-		<%= f.hidden_field :user_id, value: @new_problem.user.id %>
-		<%= f.submit "Save" %>
-	<% end %>
+	<%= render template: "problems/create" %>
 
 	<hr />
 
-	<ul class="list-group">
-		<% @user.unsolved_problems.each do |problem| %>
-			<li class="list-group-item">
-				<%= link_to focus_problem_path(problem),
-					class: "btn btn-primary btn-xs",
-					role: "button",
-					method: "post" do %>
-					<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-				<% end %>
-				<%= link_to "Solve", solve_problem_path(problem),
-					class: "btn btn-primary btn-xs",
-					role: "button",
-					method: "post" %>
-				<button class="btn btn-primary btn-xs"
-						data-toggle="collapse"
-						data-target="#problem-<%= problem.id %>">
-					Hypotheses
-				</button>
-				<%= problem.description %>
-			</li>
-			<div id="problem-<%= problem.id %>" class="collapse">
-				<% problem.hypotheses.each do |hypothesis| %>
-					<li class="list-group-item list-group-item-info">
-						<%= hypothesis.description %>
-					</li>
-				<% end %>
-				<li class="list-group-item list-group-item-info">
-					<%= form_for @new_hypothesis do |f| %>
-						<%= f.text_field :description, placeholder: "What's your hypothesis?", class: "description" %>
-						<%= f.hidden_field :problem_id, value: problem.id %>
-						<%= f.submit "Save" %>
-					<% end %>
-				</li>
-			</div>
-		<% end %>
+	<ul class="nav nav-tabs">
+		<li role="presentation"><a href="#">Focus</a></li>
+		<li role="presentation" class="active"><a href="#">All</a></li>
 	</ul>
+
+	<%= render template: "problems/index" %>
 <% else %>
 	<p>You must sign in first</p>
 <% end %>
