@@ -44,6 +44,7 @@ group :development, :test do
 
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'mutant-rspec'
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'users#auth'
 
-  resources :problems, only: ["create", "solve"] do
+  resources :problems, only: ["create", "solve", "focus", "unfocus"] do
     member do
       post 'solve'
+      post 'focus'
+      post 'unfocus'
     end
   end
 

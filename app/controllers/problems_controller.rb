@@ -12,4 +12,18 @@ class ProblemsController < ApplicationController
     Problem.find(params[:id]).solve
     redirect_to '/'
   end
+
+  def focus
+    p = Problem.find(params[:id])
+    p.focus = true
+    p.save!
+    redirect_to '/'
+  end
+
+  def unfocus
+    p = Problem.find(params[:id])
+    p.focus = false
+    p.save!
+    redirect_to '/'
+  end
 end

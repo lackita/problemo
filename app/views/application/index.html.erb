@@ -10,11 +10,19 @@
 	<ul class="list-group">
 		<% @user.unsolved_problems.each do |problem| %>
 			<li class="list-group-item">
+				<%= link_to focus_problem_path(problem),
+					class: "btn btn-primary btn-xs",
+					role: "button",
+					method: "post" do %>
+					<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+				<% end %>
 				<%= link_to "Solve", solve_problem_path(problem),
 					class: "btn btn-primary btn-xs",
 					role: "button",
 					method: "post" %>
-				<button class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#problem-<%= problem.id %>">
+				<button class="btn btn-primary btn-xs"
+						data-toggle="collapse"
+						data-target="#problem-<%= problem.id %>">
 					Hypotheses
 				</button>
 				<%= problem.description %>
