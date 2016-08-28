@@ -5,6 +5,6 @@ class HypothesesController < ApplicationController
       hypothesis = problem.hypotheses.new(params.require(:hypothesis).permit(:description))
       hypothesis.save!
     end
-    redirect_to "/"
+    redirect_to request.referer
   end
 end

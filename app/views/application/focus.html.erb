@@ -2,9 +2,6 @@
 
 <hr />
 
-<ul class="nav nav-tabs">
-	<li role="presentation" class="active"><a href="/focus">Focus</a></li>
-	<li role="presentation"><a href="/all">All</a></li>
-</ul>
+<%= render partial: "tabs", locals: {tab: "focus"} %>
 
 <%= render template: "problems/index" %>
