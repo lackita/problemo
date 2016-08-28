@@ -1,5 +1,6 @@
 <%= form_for @new_problem do |f| %>
 	<%= f.text_field :description, placeholder: "Describe your problem", autofocus: true, class: "description" %> <br />
 	<%= f.hidden_field :user_id, value: @new_problem.user.id %>
+	<%= f.hidden_field :focus, value: @new_problem.focus %>
 	<%= f.submit "Save" %>
 <% end %>

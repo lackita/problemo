@@ -9,12 +9,14 @@ class ApplicationController < ActionController::Base
   def focus
     @user = User.find_by_id(session[:user_id])
     @new_problem = @user.problems.new
+    @new_problem.focus = true
     @problems = @user.unsolved_problems.where focus: true
   end
 
   def all
     @user = User.find_by_id(session[:user_id])
     @new_problem = @user.problems.new
+    @new_problem.focus = false
     @problems = @user.unsolved_problems
   end
 end
