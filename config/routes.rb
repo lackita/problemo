@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get '/', to: "application#index"
+  get '/focus', to: "application#focus"
+  get '/all', to: "application#all"
 
   get '/auth/:provider/callback', to: 'users#auth'
 
