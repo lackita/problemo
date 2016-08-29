@@ -1,7 +1,7 @@
 class ProblemsController < ApplicationController
   def create
     if params[:problem][:description]
-      user = User.find(params[:problem][:user_id])
+      user = User.find(session[:user_id])
       problem = user.problems.new(params.require(:problem).permit(:description, :focus))
       problem.save!
     end
@@ -9,14 +9,19 @@ class ProblemsController < ApplicationController
   end
 
   def solve
-    Problem.find(params[:id]).solve
+    p = Problem.find(params[:id])
+    if p.user.id == session[:user_id].to_i
+      p.solve
+    end
     redirect_to request.referer
   end
 
   def focus
     p = Problem.find(params[:id])
-    p.focus = true
-    p.save!
+    if p.user.id == session[:user_id].to_i
+      p.focus = true
+      p.save!
+    end
     redirect_to request.referer
   end
 
