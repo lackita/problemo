@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827165645) do
+ActiveRecord::Schema.define(version: 20160829112943) do
 
   create_table "hypotheses", force: :cascade do |t|
     t.integer  "problem_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160827165645) do
     t.string   "description"
     t.boolean  "solved"
     t.integer  "user_id"
-    t.boolean  "focus"
+    t.boolean  "focused"
   end
 
   create_table "users", force: :cascade do |t|

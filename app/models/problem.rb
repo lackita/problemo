@@ -11,8 +11,4 @@ class Problem < ApplicationRecord
     self.solved = true
     save!
   end
-
-  def focused?
-    self.focus
-  end
 end

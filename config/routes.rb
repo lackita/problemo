@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get '/', to: "application#index"
-  get '/focus', to: "application#focus"
-  get '/all', to: "application#all"
+  get '/', to: "users#index"
+  get '/focused', to: "users#focused"
+  get '/all', to: "users#all"
 
   get '/auth/:provider/callback', to: 'users#auth'
 
@@ -15,7 +15,11 @@ Rails.application.routes.draw do
 
   resources :hypotheses, only: ["create"]
 
-  resources :users, only: ["sign_out"] do
+  resources :users, only: ["index", "focused", "sign_out"] do
+    collection do
+      'focused'
+    end
+
     member do
       get 'sign_out'
     end

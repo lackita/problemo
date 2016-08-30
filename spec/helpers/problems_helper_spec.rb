@@ -11,5 +11,19 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ProblemsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "toggle_focus_path" do
+    before(:each) do
+      @problem = User.create!.problems.create!
+    end
+
+    it "has an unfocus path when focused" do
+      @problem.focused = true
+      expect(toggle_focus_path(@problem)).to eq(unfocus_problem_path(@problem))
+    end
+
+    it "has an focus path when unfocused" do
+      @problem.focused = false
+      expect(toggle_focus_path(@problem)).to eq(focus_problem_path(@problem))
+    end
+  end
 end
