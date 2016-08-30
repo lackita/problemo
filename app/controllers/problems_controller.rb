@@ -27,8 +27,10 @@ class ProblemsController < ApplicationController
 
   def unfocus
     p = Problem.find(params[:id])
-    p.focused = false
-    p.save!
+    if p.user.id == session[:user_id].to_i
+      p.focused = false
+      p.save!
+    end
     redirect_to request.referer
   end
 end

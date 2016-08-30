@@ -1,7 +1,7 @@
 class HypothesesController < ApplicationController
   def create
-    if params[:hypothesis][:description]
-      problem = Problem.find(params[:hypothesis][:problem_id])
+    problem = Problem.find(params[:hypothesis][:problem_id])
+    if params[:hypothesis][:description] and problem.user.id.to_s == session[:user_id]
       hypothesis = problem.hypotheses.new(params.require(:hypothesis).permit(:description))
       hypothesis.save!
     end
