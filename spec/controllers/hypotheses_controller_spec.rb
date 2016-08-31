@@ -6,10 +6,10 @@ RSpec.describe HypothesesController, type: :controller do
       @user = User.create!
       @problem = @user.problems.create!
       @request.env['HTTP_REFERER'] = "/"
+      session[:user_id] = @user.id
     end
 
     it "creates a hypothesis" do
-      session[:user_id] = @user.id
       post :create, hypothesis: {problem_id: @problem.id.to_s,
                                  description: "foo"}
       @problem.reload
@@ -22,6 +22,12 @@ RSpec.describe HypothesesController, type: :controller do
                                  description: "foo"}
       @problem.reload
       expect(@problem.hypotheses).to be_empty
+    end
+
+    it "doesn't create a hypothesis for an empty string" do
+      post :create, hypothesis: {problem_id: @problem.id,
+                                 description: ""}
+      expect(@problem.hypotheses.length).to eq(0)
     end
   end
 end
