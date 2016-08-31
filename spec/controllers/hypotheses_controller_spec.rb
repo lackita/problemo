@@ -9,11 +9,11 @@ RSpec.describe HypothesesController, type: :controller do
     end
 
     it "creates a hypothesis" do
-      session[:user_id] = @user.id.to_s
-      post :create, hypothesis: {problem_id: @problem.id,
+      session[:user_id] = @user.id
+      post :create, hypothesis: {problem_id: @problem.id.to_s,
                                  description: "foo"}
       @problem.reload
-      expect(@problem.hypotheses.length).to be(1)
+      expect(@problem.hypotheses.length).to eq(1)
     end
 
     it "doesn't create a hypothesis for the wrong user" do
